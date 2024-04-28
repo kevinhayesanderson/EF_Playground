@@ -54,7 +54,7 @@ void ExecuteDelete()
 {
     var deleteId = 9;
     //ExecuteDelete can be attacted to DbSet or IQueryable
-    _context.Authors.Where(a => a.Id == deleteId).ExecuteDelete();//does not interact with change tracker, deletes immediately
+    _context.Authors.Where(a => a.AuthorId == deleteId).ExecuteDelete();//does not interact with change tracker, deletes immediately
     var startswith = "H";
     var count = _context.Authors.Where(a => a.LastName.StartsWith(startswith)).ExecuteDelete();
     //no need to call savechanges, because the objectes are untracked.
