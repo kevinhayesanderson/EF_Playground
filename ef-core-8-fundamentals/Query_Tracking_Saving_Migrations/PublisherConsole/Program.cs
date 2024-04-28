@@ -16,6 +16,11 @@ using PublisherDomain;
 
 using PubContext _context = new(); //assumes the database is created and populated
 
+var name = "Ozeki";
+var authors = _context.Authors.Where(a => a.LastName == name).ToList();
+
+//GetAuthors();
+
 //QueryFilters();
 
 //FindIt();

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Logging;
 using PublisherDomain;
 
 namespace PublisherData
@@ -13,8 +15,13 @@ namespace PublisherData
         {
             //Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PubDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False
             optionsBuilder
-                .UseSqlServer("Data Source=localhost; Initial Catalog=PubDatabase; User Id=SA; Password=nYHwQreterDDFFu31Upsfq8nz;Trust Server Certificate=True;");
+                .UseSqlServer("Data Source=localhost; Initial Catalog=PubDatabase; User Id=SA; Password=nYHwQreterDDFFu31Upsfq8nz;Trust Server Certificate=True;")
             //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking); //All queries for this context will default to no tracking
+            .LogTo(Console.WriteLine,
+                   new[] { DbLoggerCategory.Database.Command.Name },
+                   LogLevel.Information,
+                   DbContextLoggerOptions.None)
+            .EnableSensitiveDataLogging();//only for test purposes
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
