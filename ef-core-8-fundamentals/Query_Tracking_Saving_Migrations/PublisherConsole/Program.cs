@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PublisherConsole;
 using PublisherData;
 using PublisherDomain;
 
@@ -16,8 +17,15 @@ using PublisherDomain;
 
 using PubContext _context = new(); //assumes the database is created and populated
 
-var name = "Ozeki";
-var authors = _context.Authors.Where(a => a.LastName == name).ToList();
+#region Quering Related data
+
+var qrd = new QueringRelatedData(_context);
+qrd.Run();
+
+#endregion Quering Related data
+
+//var name = "Ozeki";
+//var authors = _context.Authors.Where(a => a.LastName == name).ToList();
 
 //GetAuthors();
 

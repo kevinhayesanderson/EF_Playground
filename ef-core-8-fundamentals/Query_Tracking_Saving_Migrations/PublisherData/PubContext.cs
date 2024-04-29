@@ -22,6 +22,7 @@ namespace PublisherData
                    LogLevel.Information,
                    DbContextLoggerOptions.None)
             .EnableSensitiveDataLogging();//only for test purposes
+            //.UseLazyLoadingProxies(); //for lazy loading
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

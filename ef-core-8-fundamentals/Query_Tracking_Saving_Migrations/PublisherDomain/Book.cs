@@ -8,6 +8,8 @@
         public decimal BasePrice { get; set; }
 
         //only add it when needed, FK is alone to define relationship
+        //virtual for lazy loading
+        //public virtual Author Author { get; set; }
         public Author Author { get; set; } //relationship //navigations
 
         //can have navigation prop alone, the FK will be automatically inferred
