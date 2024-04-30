@@ -3,8 +3,11 @@
     public class Book
     {
         public int BookId { get; set; }//convention: "{TypeName}Id" as primary key property
+
         public string Title { get; set; } //property names are column names
+
         public DateOnly PublishDate { get; set; }
+
         public decimal BasePrice { get; set; }
 
         //only add it when needed, FK is alone to define relationship
@@ -21,5 +24,7 @@
 
         //Optional parent
         //public int? AuthorId { get; set; } //FK //nullable property
+
+        public Cover Cover { get; set; }//nav prop//for 1to1 relationship
     }
 }
