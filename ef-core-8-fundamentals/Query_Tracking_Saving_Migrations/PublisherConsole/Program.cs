@@ -19,10 +19,17 @@ using PubContext _context = new(); //assumes the database is created and populat
 
 #region Quering Related data
 
-var qrd = new QueringRelatedData(_context);
-qrd.Run();
+//var qrd = new QueringOneToMany(_context);
+//qrd.Run();
 
 #endregion Quering Related data
+
+#region Quering Many to Many
+
+var qmm = new QueringManyToMany(_context);
+qmm.Run();
+
+#endregion Quering Many to Many
 
 //var name = "Ozeki";
 //var authors = _context.Authors.Where(a => a.LastName == name).ToList();
