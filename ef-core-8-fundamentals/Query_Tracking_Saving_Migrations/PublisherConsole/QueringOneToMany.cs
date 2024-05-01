@@ -177,6 +177,7 @@ namespace PublisherConsole
             author.Books[0].BasePrice = (decimal)12.00; //untraced by newContext
 
             var newContext = new PubContext();
+
             //newContext.Books.Update(author.Books[0]); //updates all the related objects in the graph//sql update command for all objects
             newContext.Entry(author.Books[0]).State = EntityState.Modified; //only update the modified object//one sql command
             var state = newContext.ChangeTracker.DebugView.ShortView;

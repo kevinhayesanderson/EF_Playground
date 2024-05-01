@@ -17,6 +17,16 @@ namespace PublisherData
 
         public DbSet<AuthorByArtist> AuthorsByArtist { get; set; }
 
+        public PubContext(DbContextOptions<PubContext> options) : base(options)
+        {
+        }
+
+        public PubContext()
+        {
+        }
+
+        //enable for console-only
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PubDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False
@@ -101,12 +111,12 @@ namespace PublisherData
             //            b.Property(ca => ca.ArtistId).HasColumnName("ArtistsArtistId");
             //        });
 
-            modelBuilder.Entity<Author>()
-           .InsertUsingStoredProcedure("AuthorInsert", spbuilder =>
-              spbuilder.HasParameter(a => a.FirstName)
-                       .HasParameter(a => a.LastName)
-                       .HasResultColumn(a => a.AuthorId)
-           );
+            // modelBuilder.Entity<Author>()
+            //.InsertUsingStoredProcedure("AuthorInsert", spbuilder =>
+            //   spbuilder.HasParameter(a => a.FirstName)
+            //            .HasParameter(a => a.LastName)
+            //            .HasResultColumn(a => a.AuthorId)
+            //);
         }
     }
 }

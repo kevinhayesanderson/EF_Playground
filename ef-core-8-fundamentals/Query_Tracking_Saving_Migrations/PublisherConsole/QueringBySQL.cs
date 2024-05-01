@@ -27,7 +27,7 @@ namespace PublisherConsole
             //DeleteCover(9);
 
             //InsertNewAuthor();
-            InsertNewAuthorWithNewBook();
+            //InsertNewAuthorWithNewBook();
         }
 
         public void SimpleRawSQL()
