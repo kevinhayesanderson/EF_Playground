@@ -15,6 +15,8 @@ namespace PublisherData
 
         public DbSet<Cover> Covers { get; set; }
 
+        public DbSet<AuthorByArtist> AuthorsByArtist { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PubDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False
@@ -31,6 +33,10 @@ namespace PublisherData
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AuthorByArtist>() //must map entities
+                .HasNoKey() //for key-les entities like views
+                .ToView(nameof(AuthorsByArtist));//to disable creating a table while migrating
+
             modelBuilder.Entity<Author>().HasData(//seed data method
                 new Author { AuthorId = 1, FirstName = "Frank", LastName = "Lopez" });
 
@@ -94,6 +100,13 @@ namespace PublisherData
             //            b.Property(ca => ca.CoverId).HasColumnName("CoversCoverId");
             //            b.Property(ca => ca.ArtistId).HasColumnName("ArtistsArtistId");
             //        });
+
+            modelBuilder.Entity<Author>()
+           .InsertUsingStoredProcedure("AuthorInsert", spbuilder =>
+              spbuilder.HasParameter(a => a.FirstName)
+                       .HasParameter(a => a.LastName)
+                       .HasResultColumn(a => a.AuthorId)
+           );
         }
     }
 }

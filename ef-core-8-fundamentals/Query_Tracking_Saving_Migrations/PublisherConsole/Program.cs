@@ -33,10 +33,17 @@ using PubContext _context = new(); //assumes the database is created and populat
 
 #region Quering One to One
 
-var qoo = new QueringOneToOne(_context);
-qoo.Run();
+//var qoo = new QueringOneToOne(_context);
+//qoo.Run();
 
 #endregion Quering One to One
+
+#region Quering by SQL
+
+var qsql = new QueringBySQL(_context);
+qsql.Run();
+
+#endregion Quering by SQL
 
 //var name = "Ozeki";
 //var authors = _context.Authors.Where(a => a.LastName == name).ToList();
